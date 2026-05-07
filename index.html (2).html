@@ -1,0 +1,1618 @@
+<!DOCTYPE html><html lang="he" dir="rtl" style="--neon: oklch(0.72 0.28 360); --neon-soft: oklch(0.72 0.28 360 / 0.18);"><head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meteora DJ Studio · קורס תיקלוט לילדים ונוער · בנימינה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+
+<style>
+  /* ---------- TOKENS ---------- */
+  :root{
+    --ink:        #0a0a0b;
+    --ink-2:      #131316;
+    --ink-3:      #1c1c20;
+    --line:       rgba(255,255,255,0.10);
+    --line-soft:  rgba(255,255,255,0.06);
+    --paper:      #f4f2ee;
+    --paper-2:    #ebe7df;
+    --paper-ink:  #14130f;
+    --muted:      rgba(255,255,255,0.62);
+    --muted-paper: rgba(20,19,15,0.62);
+
+    --neon:       oklch(0.72 0.28 350);
+    --neon-soft:  oklch(0.72 0.28 350 / 0.18);
+    --cyan:       oklch(0.82 0.15 220);
+
+    --display:    "Space Grotesk", "Heebo", system-ui, sans-serif;
+    --body:       "Heebo", system-ui, sans-serif;
+    --mono:       "JetBrains Mono", ui-monospace, monospace;
+
+    --maxw: 1240px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:var(--ink); color:#fff; font-family:var(--body); -webkit-font-smoothing:antialiased; }
+  body{ font-size:16px; line-height:1.6; overflow-x:hidden; }
+  img{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+  ::selection{ background:var(--neon); color:#000; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+
+  /* ---------- TOPBAR ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,10,11,0.72);
+    backdrop-filter:saturate(140%) blur(14px);
+    -webkit-backdrop-filter:saturate(140%) blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--display); font-weight:600; letter-spacing:0.02em;
+    font-size:15px;
+  }
+  .brand-mark{
+    width:22px; height:22px; position:relative;
+  }
+  .brand-mark::before, .brand-mark::after{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    border:1.5px solid #fff;
+  }
+  .brand-mark::after{
+    transform:translate(5px,0); border-color:var(--neon);
+    mix-blend-mode:screen;
+  }
+  .brand small{
+    font-family:var(--mono); font-size:10.5px; font-weight:400;
+    color:var(--muted); letter-spacing:0.12em; text-transform:uppercase;
+    margin-inline-start:4px;
+  }
+  .nav{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
+  .nav a{ transition:color .15s; }
+  .nav a:hover{ color:#fff; }
+  .top-cta{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:10px 16px; border:1px solid var(--neon);
+    color:#fff; background:var(--neon-soft);
+    transition:background .15s, transform .15s;
+  }
+  .top-cta:hover{ background:var(--neon); color:#000; }
+  @media (max-width:780px){
+    .nav{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; isolation:isolate;
+    min-height:min(92vh, 820px);
+    display:flex; align-items:flex-end;
+    padding:120px 0 56px;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:-2;
+    background-image:url("assets/studio-atmosphere.jpeg");
+    background-size:cover; background-position:center;
+    filter:saturate(1.1) contrast(1.05);
+  }
+  .hero-bg::after{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(0,0,0,0) 0%, rgba(10,10,11,0.55) 60%, rgba(10,10,11,0.92) 100%),
+      linear-gradient(180deg, rgba(10,10,11,0.45) 0%, rgba(10,10,11,0.25) 40%, rgba(10,10,11,0.95) 100%);
+  }
+  .hero-grid{
+    position:absolute; inset:0; z-index:-1;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:80px 80px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--muted);
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{
+    width:8px; height:8px; border-radius:50%; background:var(--neon);
+    box-shadow:0 0 12px var(--neon);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{ 50%{ opacity:.4; transform:scale(.85);} }
+
+  h1.hero-h{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(44px, 7.2vw, 104px);
+    line-height:0.96; letter-spacing:-0.025em;
+    max-width:14ch;
+  }
+  h1.hero-h em{
+    font-style:normal; font-family:var(--body); font-weight:300;
+    color:var(--muted);
+    display:block; font-size:0.42em; line-height:1.3; letter-spacing:0;
+    margin-top:18px; max-width:30ch;
+  }
+  .hero-h .neon{
+    color:var(--neon);
+    text-shadow:0 0 26px oklch(0.72 0.28 350 / 0.55);
+  }
+
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:36px 56px; align-items:flex-end;
+    margin-top:48px;
+    border-top:1px solid var(--line);
+    padding-top:24px;
+  }
+  .hero-meta dl{
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .hero-meta dt{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .hero-meta dd{
+    font-family:var(--display); font-size:18px; font-weight:500;
+  }
+  .hero-cta-row{
+    display:flex; gap:14px; flex-wrap:wrap; margin-inline-start:auto;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 24px; font-family:var(--display); font-weight:500;
+    font-size:15px; letter-spacing:0.01em;
+    border:1px solid transparent; transition:all .18s;
+  }
+  .btn .arrow{
+    width:14px; height:10px; position:relative;
+  }
+  .btn .arrow::before{
+    content:""; position:absolute; inset:0;
+    background:currentColor;
+    clip-path:polygon(0 45%, 70% 45%, 70% 0, 100% 50%, 70% 100%, 70% 55%, 0 55%);
+    transform:scaleX(-1);
+    transition:transform .18s;
+  }
+  .btn:hover .arrow::before{ transform:scaleX(-1) translateX(3px); }
+  .btn-primary{
+    background:#fff; color:#000;
+  }
+  .btn-primary:hover{
+    background:var(--neon); color:#000;
+    box-shadow:0 0 0 3px var(--neon-soft);
+  }
+  .btn-ghost{
+    border-color:var(--line);
+    color:#fff;
+  }
+  .btn-ghost:hover{
+    border-color:#fff;
+    background:rgba(255,255,255,0.04);
+  }
+
+  /* ---------- TICKER ---------- */
+  .ticker{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    background:#000;
+  }
+  .ticker-track{
+    display:flex; gap:48px; padding:14px 0;
+    white-space:nowrap;
+    animation:scroll 40s linear infinite;
+    font-family:var(--mono); font-size:13px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .ticker-track span{ display:inline-flex; align-items:center; gap:48px; }
+  .ticker-track span::before{
+    content:"●"; color:var(--neon); font-size:8px;
+  }
+  @keyframes scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:120px 0; position:relative; }
+  .section-eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--muted);
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:28px;
+  }
+  .section-eyebrow .num{
+    color:var(--neon); font-weight:500;
+  }
+  .section-eyebrow .line{
+    flex:1; max-width:80px; height:1px; background:var(--line);
+  }
+  h2.section-h{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(34px, 4.6vw, 60px);
+    line-height:1.04; letter-spacing:-0.02em;
+    max-width:22ch; margin-bottom:24px;
+  }
+  .section-lead{
+    font-size:19px; line-height:1.65; color:var(--muted);
+    max-width:62ch; font-weight:300;
+  }
+  .section-lead strong{ color:#fff; font-weight:500; }
+
+  /* ---------- WHY (more-than-tech) ---------- */
+  .why{
+    background:var(--ink);
+  }
+  .why-head{
+    display:grid; grid-template-columns:1fr 1fr; gap:80px;
+    align-items:end; margin-bottom:80px;
+  }
+  @media (max-width:880px){
+    .why-head{ grid-template-columns:1fr; gap:24px; }
+  }
+  .why-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--line);
+  }
+  @media (max-width:980px){
+    .why-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:560px){
+    .why-grid{ grid-template-columns:1fr; }
+  }
+  .why-cell{
+    padding:36px 28px 36px 0;
+    border-bottom:1px solid var(--line);
+    border-inline-start:1px solid var(--line);
+    padding-inline-start:28px;
+    position:relative;
+  }
+  .why-cell:first-child{ border-inline-start:none; padding-inline-start:0; }
+  @media (max-width:980px){
+    .why-cell{ border-inline-start:none; padding-inline-start:0; padding-inline-end:24px; }
+    .why-cell:nth-child(2n){ border-inline-start:1px solid var(--line); padding-inline-start:24px; }
+  }
+  .why-num{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+    color:var(--neon); margin-bottom:14px;
+  }
+  .why-cell h3{
+    font-family:var(--display); font-weight:500; font-size:22px;
+    line-height:1.2; margin-bottom:10px; letter-spacing:-0.01em;
+  }
+  .why-cell p{
+    color:var(--muted); font-size:15px; line-height:1.6; font-weight:300;
+  }
+
+  /* ---------- COURSE (5 sessions) ---------- */
+  .course{
+    background:var(--paper);
+    color:var(--paper-ink);
+  }
+  .course .section-eyebrow{ color:var(--muted-paper); }
+  .course .section-eyebrow .line{ background:rgba(0,0,0,0.12); }
+  .course .section-lead{ color:rgba(20,19,15,0.7); }
+  .course .section-lead strong{ color:var(--paper-ink); }
+
+  .course-head{
+    display:grid; grid-template-columns:1fr 1fr; gap:80px;
+    align-items:end; margin-bottom:64px;
+  }
+  @media (max-width:880px){
+    .course-head{ grid-template-columns:1fr; gap:20px; }
+  }
+
+  .sessions{
+    display:grid; grid-template-columns:repeat(5,1fr);
+    border-top:1px solid rgba(0,0,0,0.18);
+  }
+  @media (max-width:980px){
+    .sessions{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){
+    .sessions{ grid-template-columns:1fr; }
+  }
+  .session{
+    padding:32px 22px;
+    border-inline-start:1px solid rgba(0,0,0,0.18);
+    border-bottom:1px solid rgba(0,0,0,0.18);
+    background:var(--paper);
+    transition:background .18s;
+    position:relative;
+  }
+  .session:hover{ background:var(--paper-2); }
+  .session:first-child{ border-inline-start:none; }
+  @media (max-width:980px){
+    .session{ border-inline-start:none; }
+    .session:nth-child(2n){ border-inline-start:1px solid rgba(0,0,0,0.18); }
+  }
+  .session-num{
+    font-family:var(--display); font-weight:500;
+    font-size:64px; line-height:1; letter-spacing:-0.04em;
+    color:var(--paper-ink);
+    margin-bottom:24px; position:relative;
+  }
+  .session-num::after{
+    content:""; position:absolute; bottom:-10px; right:0;
+    width:28px; height:1.5px; background:var(--neon);
+  }
+  .session h3{
+    font-family:var(--display); font-weight:500; font-size:18px;
+    line-height:1.25; margin-bottom:8px;
+  }
+  .session p{
+    font-size:14px; line-height:1.55; color:rgba(20,19,15,0.65); font-weight:300;
+  }
+
+  /* ---------- OUTCOMES ---------- */
+  .outcomes{
+    background:var(--paper);
+    color:var(--paper-ink);
+    padding-top:0;
+  }
+  .outcomes-head{
+    margin-bottom:56px;
+  }
+  .outcomes-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+  }
+  @media (max-width:880px){
+    .outcomes-grid{ grid-template-columns:1fr; }
+  }
+  .outcome{
+    background:var(--ink); color:#fff;
+    padding:48px 36px; min-height:300px;
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    display:flex; flex-direction:column; justify-content:space-between;
+    position:relative; overflow:hidden;
+  }
+  .outcome-tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--neon);
+  }
+  .outcome h3{
+    font-family:var(--display); font-weight:500; font-size:30px;
+    line-height:1.1; letter-spacing:-0.015em;
+    min-height:2.2em; display:flex; align-items:flex-end; justify-content:center;
+  }
+  .outcome p{
+    color:var(--muted); font-size:15px; line-height:1.55; font-weight:300;
+    margin-top:14px;
+  }
+  .outcome-vis{
+    width:56px; height:56px; opacity:0.85;
+    margin:8px auto 32px;
+    display:block;
+  }
+  .outcome > div{ width:100%; }
+  .outcome p{ max-width:32ch; margin-inline:auto; }
+
+  /* ---------- INSTRUCTOR ---------- */
+  .instructor{
+    background:var(--ink);
+    padding:140px 0;
+  }
+  .instructor-grid{
+    display:grid; grid-template-columns:5fr 7fr; gap:80px;
+    align-items:center;
+  }
+  @media (max-width:980px){
+    .instructor-grid{ grid-template-columns:1fr; gap:48px; }
+  }
+  .instructor-photo{
+    position:relative;
+    aspect-ratio:633/950;
+    background:#000;
+    overflow:hidden;
+  }
+  .instructor-photo img{
+    width:100%; height:100%; object-fit:cover;
+    object-position:50% 18%;
+    transform:scale(1.08); transform-origin:50% 30%;
+    filter:contrast(1.05) brightness(1.02);
+  }
+  .instructor-photo::before{
+    content:""; position:absolute;
+    top:18px; right:-18px; bottom:18px; left:18px;
+    border:1px solid var(--neon);
+    pointer-events:none;
+    z-index:1;
+  }
+  .instructor-tag{
+    position:absolute; bottom:18px; right:18px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+    text-transform:uppercase; color:#fff;
+    background:rgba(0,0,0,0.6); padding:8px 12px;
+    border:1px solid var(--line);
+    z-index:2;
+  }
+  .instructor-content h2{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(38px, 4.4vw, 56px);
+    line-height:1.02; letter-spacing:-0.02em;
+    margin-bottom:24px;
+  }
+  .instructor-content h2 small{
+    display:block; font-size:0.36em; font-weight:300;
+    color:var(--neon); font-family:var(--mono);
+    letter-spacing:0.16em; text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .instructor-bio{
+    font-size:18px; line-height:1.7; color:var(--muted); font-weight:300;
+    max-width:54ch;
+  }
+  .instructor-bio p + p{ margin-top:16px; }
+  .instructor-quote{
+    margin-top:36px;
+    padding:24px 28px;
+    border-inline-start:2px solid var(--neon);
+    background:rgba(255,255,255,0.02);
+    font-family:var(--display); font-weight:400; font-size:20px;
+    line-height:1.45; color:#fff; max-width:52ch;
+  }
+
+  /* ---------- PRICING ---------- */
+  .pricing{
+    background:var(--paper); color:var(--paper-ink);
+  }
+  .pricing-head{ margin-bottom:64px; }
+  .pricing .section-eyebrow{ color:var(--muted-paper); }
+  .pricing .section-eyebrow .line{ background:rgba(0,0,0,0.12); }
+
+  .price-grid{
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:0;
+    border:1px solid rgba(0,0,0,0.18);
+  }
+  @media (max-width:980px){
+    .price-grid{ grid-template-columns:1fr; }
+  }
+  .price-card{
+    padding:48px 40px;
+    border-inline-start:1px solid rgba(0,0,0,0.18);
+    background:var(--paper);
+    display:flex; flex-direction:column;
+    position:relative;
+    min-height:440px;
+  }
+  .price-card:first-child{ border-inline-start:none; }
+  @media (max-width:980px){
+    .price-card{ border-inline-start:none; border-bottom:1px solid rgba(0,0,0,0.18); }
+    .price-card:last-child{ border-bottom:none; }
+  }
+  .price-card.featured{
+    background:var(--ink); color:#fff;
+  }
+  .price-card.featured .price-tag,
+  .price-card.featured .price-meta{ color:rgba(255,255,255,0.62); }
+
+  .price-tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--muted-paper);
+    margin-bottom:36px;
+  }
+  .price-card.featured .price-tag::before{
+    content:"●"; color:var(--neon); margin-inline-end:8px;
+  }
+  .price-name{
+    font-family:var(--display); font-weight:500; font-size:24px;
+    margin-bottom:8px;
+  }
+  .price-sub{
+    font-size:14px; color:var(--muted-paper); margin-bottom:32px;
+    font-weight:300;
+  }
+  .price-card.featured .price-sub{ color:rgba(255,255,255,0.62); }
+  .price-amount{
+    display:flex; align-items:baseline; gap:8px;
+    margin-bottom:8px;
+  }
+  .price-amount .num{
+    font-family:var(--display); font-weight:500;
+    font-size:64px; letter-spacing:-0.03em; line-height:1;
+  }
+  .price-amount .currency{
+    font-family:var(--display); font-weight:500; font-size:24px;
+    color:var(--muted-paper);
+  }
+  .price-card.featured .price-amount .currency{ color:rgba(255,255,255,0.7); }
+  .price-meta{
+    font-size:13px; color:var(--muted-paper); margin-bottom:28px;
+    font-family:var(--mono); letter-spacing:0.04em;
+  }
+  .price-list{
+    list-style:none; margin-top:auto; padding-top:24px;
+    border-top:1px solid rgba(0,0,0,0.12);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .price-card.featured .price-list{ border-top-color:var(--line); }
+  .price-list li{
+    font-size:14px; line-height:1.5; padding-inline-start:18px;
+    position:relative;
+  }
+  .price-list li::before{
+    content:""; position:absolute; right:0; top:9px;
+    width:8px; height:1px; background:currentColor; opacity:.6;
+  }
+  .price-cta{
+    margin-top:24px;
+    padding:14px 0;
+    border-top:1px solid currentColor;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.12em;
+    text-transform:uppercase;
+    display:flex; justify-content:space-between; align-items:center;
+    transition:color .15s;
+  }
+  .price-card:hover .price-cta{ color:var(--neon); }
+  .price-card.featured:hover .price-cta{ color:var(--neon); }
+
+  /* ---------- TRIAL CTA STRIP ---------- */
+  .trial{
+    background:var(--ink-2);
+    padding:80px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .trial-inner{
+    display:grid; grid-template-columns:auto 1fr auto; gap:48px;
+    align-items:center;
+  }
+  @media (max-width:880px){
+    .trial-inner{ grid-template-columns:1fr; gap:24px; text-align:start; }
+  }
+  .trial-tag{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--neon);
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    border-inline-start:1px solid var(--neon);
+    padding-inline-start:14px;
+  }
+  @media (max-width:880px){
+    .trial-tag{ writing-mode:horizontal-tb; transform:none; border-inline-start:0; padding-inline-start:0; border-bottom:1px solid var(--neon); padding-bottom:8px; display:inline-block; }
+  }
+  .trial-content h3{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(28px, 3.2vw, 40px);
+    line-height:1.1; letter-spacing:-0.02em; margin-bottom:10px;
+  }
+  .trial-content p{
+    color:var(--muted); font-size:16px; max-width:54ch; font-weight:300;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{
+    background:var(--ink);
+  }
+  .test-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:980px){
+    .test-grid{ grid-template-columns:1fr; }
+  }
+  .test{
+    padding:48px 36px;
+    border-inline-start:1px solid var(--line);
+    display:flex; flex-direction:column; gap:24px;
+    min-height:340px;
+  }
+  .test:first-child{ border-inline-start:none; }
+  @media (max-width:980px){
+    .test{ border-inline-start:none; border-top:1px solid var(--line); }
+    .test:first-child{ border-top:none; }
+  }
+  .test-mark{
+    font-family:var(--display); font-size:48px; line-height:0.6;
+    color:var(--neon); height:24px;
+  }
+  .test-body{
+    font-size:17px; line-height:1.6; color:#fff; font-weight:300;
+    flex:1;
+  }
+  .test-meta{
+    border-top:1px solid var(--line); padding-top:18px;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
+    color:var(--muted); text-transform:uppercase;
+  }
+  .test-meta strong{ color:#fff; font-weight:500; display:block; margin-bottom:2px; letter-spacing:0; font-family:var(--display); font-size:14px; text-transform:none;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--ink-2);
+    padding:140px 0 80px;
+    position:relative;
+  }
+  .contact::before{
+    content:""; position:absolute; top:0; right:0; left:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--neon), transparent);
+    opacity:.6;
+  }
+  .contact-grid{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:80px;
+    align-items:start;
+  }
+  @media (max-width:980px){
+    .contact-grid{ grid-template-columns:1fr; gap:48px; }
+  }
+  .contact h2{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(40px, 5.4vw, 76px);
+    line-height:0.98; letter-spacing:-0.025em;
+    margin-bottom:28px;
+  }
+  .contact h2 .neon{
+    color:var(--neon);
+    text-shadow:0 0 20px oklch(0.72 0.28 350 / 0.4);
+  }
+  .contact-lead{
+    font-size:19px; line-height:1.6; color:var(--muted); font-weight:300;
+    margin-bottom:40px; max-width:42ch;
+  }
+  .contact-list{
+    display:flex; flex-direction:column; gap:0;
+    border-top:1px solid var(--line);
+  }
+  .contact-list a{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+    font-family:var(--display); font-size:18px;
+    transition:padding .18s, color .18s;
+  }
+  .contact-list a:hover{
+    color:var(--neon);
+    padding-inline-end:8px;
+  }
+  .contact-list .label{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .contact-list .arrow{
+    width:14px; height:10px; position:relative; display:inline-block;
+  }
+  .contact-list .arrow::before{
+    content:""; position:absolute; inset:0;
+    background:currentColor;
+    clip-path:polygon(0 45%, 70% 45%, 70% 0, 100% 50%, 70% 100%, 70% 55%, 0 55%);
+    transform:scaleX(-1);
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{
+    padding:120px 0;
+    background:var(--ink);
+    border-top:1px solid var(--line);
+  }
+  /* ===== ARTIST ===== */
+  .artist{
+    background:var(--ink);
+    color:var(--paper);
+    padding:120px 0;
+    border-top:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .artist .section-eyebrow{ color:var(--muted); }
+  .artist-grid{
+    display:grid; grid-template-columns: 7fr 5fr; gap:80px;
+    align-items:center;
+  }
+  @media (max-width:980px){
+    .artist-grid{ grid-template-columns:1fr; gap:48px; }
+    .artist{ padding:80px 0; }
+  }
+  .artist-video{
+    position:relative;
+    aspect-ratio: 16/10;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:#000;
+  }
+  .artist-video video{
+    width:100%; height:100%; object-fit:cover;
+    display:block;
+  }
+  .artist-video::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5) 100%);
+    pointer-events:none;
+  }
+  .artist-video-tag{
+    position:absolute; bottom:20px; inset-inline-start:20px;
+    z-index:2;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.2em;
+    color:var(--paper); text-transform:uppercase;
+    background:rgba(0,0,0,0.55); backdrop-filter:blur(6px);
+    padding:8px 14px; border:1px solid rgba(255,255,255,0.18);
+  }
+  .artist-video-mute{
+    position:absolute; top:20px; inset-inline-end:20px;
+    z-index:3;
+    width:48px; height:48px;
+    background:rgba(0,0,0,0.55); backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,0.25);
+    color:var(--paper);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background 0.18s, border-color 0.18s, color 0.18s;
+    padding:0;
+  }
+  .artist-video-mute:hover{
+    background:var(--neon); border-color:var(--neon); color:#000;
+  }
+  .artist-video-mute svg{ width:22px; height:22px; }
+  .artist-video-mute .ic-on{ display:none; }
+  .artist-video-mute[data-muted="false"] .ic-muted{ display:none; }
+  .artist-video-mute[data-muted="false"] .ic-on{ display:block; }
+  .artist h2{
+    font-family:var(--display);
+    font-size: clamp(40px, 5vw, 68px);
+    line-height:0.96;
+    letter-spacing:-0.02em;
+    margin:0 0 24px;
+    font-weight:600;
+  }
+  .artist h2 small{
+    display:block;
+    font-family:var(--mono); font-size:12px;
+    letter-spacing:0.3em; color:var(--muted);
+    margin-bottom:18px; text-transform:uppercase;
+    font-weight:500;
+  }
+  .artist h2 .neon{ color:var(--neon); }
+  .artist-bio{
+    font-size:17px; line-height:1.65; color:rgba(255,255,255,0.78);
+    max-width:46ch; margin-bottom:32px;
+  }
+  .artist-bio p + p{ margin-top:14px; }
+  .artist-link{
+    display:inline-flex; align-items:center; gap:14px;
+    padding:18px 24px;
+    background:transparent;
+    border:1px solid var(--neon);
+    color:var(--paper);
+    text-decoration:none;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase;
+    transition:background 0.2s, color 0.2s;
+    position:relative;
+  }
+  .artist-link:hover{
+    background:var(--neon); color:#000;
+  }
+  .artist-link .sc-icon{
+    width:22px; height:14px; flex:none;
+  }
+  .artist-link .sc-icon path{ fill:currentColor; }
+  .artist-link strong{
+    font-family:var(--display); font-size:16px; letter-spacing:-0.005em;
+    text-transform:none; font-weight:600;
+  }
+  .artist-link .arrow{
+    font-family:var(--mono); margin-inline-start:auto;
+  }
+
+  .faq-grid{
+    display:grid; grid-template-columns: 5fr 7fr; gap:80px;
+    align-items:start;
+  }
+  @media (max-width: 880px){
+    .faq{ padding:80px 0; }
+    .faq-grid{ grid-template-columns:1fr; gap:40px; }
+  }
+  .faq-head h2{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(38px, 5.4vw, 72px);
+    line-height:0.96; letter-spacing:-0.01em;
+    margin-top:18px;
+  }
+  .faq-head p{
+    margin-top:24px; color:var(--muted);
+    max-width:34ch; line-height:1.55;
+  }
+  .faq-list{
+    display:flex; flex-direction:column;
+    border-top:1px solid var(--line);
+  }
+  .faq-item{
+    border-bottom:1px solid var(--line);
+  }
+  .faq-q{
+    width:100%;
+    background:transparent; border:0; color:var(--paper);
+    padding:26px 0; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:24px; text-align:start;
+    font-family:var(--display); font-size:21px; font-weight:500;
+    line-height:1.3;
+    transition:color .2s;
+  }
+  .faq-q:hover{ color:var(--neon); }
+  .faq-q .num{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em;
+    color:var(--muted); flex-shrink:0; min-width:36px;
+  }
+  .faq-q-text{ flex:1; }
+  .faq-q .icon{
+    width:18px; height:18px; flex-shrink:0; position:relative;
+    transition:transform .25s ease;
+  }
+  .faq-q .icon::before,
+  .faq-q .icon::after{
+    content:""; position:absolute; background:var(--paper);
+    transition:background .2s;
+  }
+  .faq-q .icon::before{
+    inset:8px 0; height:2px;
+  }
+  .faq-q .icon::after{
+    inset:0 8px; width:2px; transition:transform .25s ease, background .2s;
+  }
+  .faq-item[open] .faq-q{ color:var(--neon); }
+  .faq-item[open] .faq-q .icon::before,
+  .faq-item[open] .faq-q .icon::after{ background:var(--neon); }
+  .faq-item[open] .faq-q .icon::after{ transform:scaleY(0); }
+  .faq-q::-webkit-details-marker{ display:none; }
+  .faq-a{
+    padding:0 0 28px;
+    color:var(--muted); line-height:1.65;
+    max-width:62ch;
+  }
+  .faq-a p + p{ margin-top:12px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    padding:48px 0 36px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono); font-size:12px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .foot{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:18px;
+  }
+  .foot .brand{ color:#fff; }
+
+  /* ---------- LITTLE UI BITS ---------- */
+  .placeholder-img{
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 12px, transparent 12px 24px),
+      var(--ink-3);
+    color:var(--muted);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+
+  /* tiny SVG icon style for outcomes */
+  .ico{ stroke:var(--neon); fill:none; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
+
+</style>
+<body style="font-family: Heebo;">
+
+<!-- ============== TOP BAR ============== -->
+<header class="topbar" data-screen-label="Topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Meteora <small>DJ Studio</small>
+    </div>
+    <nav class="nav">
+      <a href="#why">למה תיקלוט</a>
+      <a href="#course">הקורס</a>
+      <a href="#instructor">המורה</a>
+      <a href="#artist">האמנית</a>
+      <a href="#pricing">מחירים</a>
+      <a href="#faq">שאלות</a>
+      <a href="#contact">צור קשר</a>
+    </nav>
+    <a href="#contact" class="top-cta">קבעו שיעור ניסיון</a>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <div class="wrap" style="position:relative; width:100%;">
+    <div class="eyebrow">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Meteora · בנימינה · קורס יסודות</span>
+    </div>
+
+    <h1 class="hero-h">
+      ילד או ילדה <br>
+      עם <span class="neon">אוזניות</span> <br>
+      ועולם משלהם.
+      <em style="font-size: 23px; font-family: Heebo">חמישה מפגשים בסטודיו אחד על אחד עם דיג'יית פעילה. הכרת הציוד, חיבור בין שני טראקים, והקלטת סט ראשון להתגאות בו.</em>
+    </h1>
+
+    <div class="hero-meta">
+      <dl>
+        <dt>גילאים</dt>
+        <dd>8 — 14</dd>
+      </dl>
+      <dl>
+        <dt>מפגשים</dt>
+        <dd>5 × 1.5–2 שעות</dd>
+      </dl>
+      <dl>
+        <dt>מיקום</dt>
+        <dd>סטודיו בבנימינה</dd>
+      </dl>
+      <dl>
+        <dt>פורמט</dt>
+        <dd>1:1 או בזוגות</dd>
+      </dl>
+      <div class="hero-cta-row">
+        <a class="btn btn-primary" href="#contact">
+          להרשמה
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+        <a class="btn btn-ghost" href="#course">
+          איך נראה הקורס
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TICKER ============== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Beatmatching</span>
+    <span>Cue Points</span>
+    <span>EQ Mixing</span>
+    <span>הקשבה מעמיקה</span>
+    <span>בחירת טראקים</span>
+    <span>Live Recording</span>
+    <span>הסט הראשון שלך</span>
+    <span>Pioneer DJ</span>
+    <span>rekordbox</span>
+    <span>Beatmatching</span>
+    <span>Cue Points</span>
+    <span>EQ Mixing</span>
+    <span>הקשבה מעמיקה</span>
+    <span>בחירת טראקים</span>
+    <span>Live Recording</span>
+    <span>הסט הראשון שלך</span>
+    <span>Pioneer DJ</span>
+    <span>rekordbox</span>
+  </div>
+</div>
+
+<!-- ============== WHY ============== -->
+<section class="why" id="why" data-screen-label="02 Why">
+  <div class="wrap">
+    <div class="why-head">
+      <div>
+        <div class="section-eyebrow">
+          <span class="num">01</span>
+          <span>למה תיקלוט לילדים</span>
+          <span class="line"></span>
+        </div>
+        <h2 class="section-h">לילדים ונוער, תיקלוט הוא הרבה יותר מטכניקה.</h2>
+      </div>
+      <p class="section-lead">
+        זה <strong>מרחב לביטוי עצמי</strong>, להקשבה מעמיקה ולזיהוי של ההעדפות המוזיקליות של&nbsp;עצמם. לפני המוזיקה שיוצאת מהרמקולים — יש את ההחלטה איזו מוזיקה לשים שם.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-cell">
+        <div class="why-num">// 01</div>
+        <h3>ביטוי עצמי</h3>
+        <p>בחירת המוזיקה היא סוג של מסע. הילד או הילדה לומדים להרגיש את עצמם ולשאול שאלות דרך הבחירות שלהם.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-num">// 02</div>
+        <h3>הקשבה מעמיקה</h3>
+        <p>מה קורה ברגע ה‑16? איפה הבס נכנס? האוזן לומדת להבחין והופכת ל"שריר" לכל החיים.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-num">// 03</div>
+        <h3>זיהוי טעם אישי</h3>
+        <p>בונים ספרייה משלהם- ז'אנרים, אמנים, התאמה לסיטואציות. ולומדים להסביר מה מדבר אליהם.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-num">// 04</div>
+        <h3>חוויה למאזין</h3>
+        <p>הסט הוא לא רק לעצמך. שואלים: איך זה נשמע באוזניים של מישהו אחר, על הספה בבית או על רחבת ריקודים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COURSE STRUCTURE ============== -->
+<section class="course" id="course" data-screen-label="03 Course">
+  <div class="wrap">
+    <div class="course-head">
+      <div>
+        <div class="section-eyebrow">
+          <span class="num">02</span>
+          <span>מבנה הקורס</span>
+          <span class="line"></span>
+        </div>
+        <h2 class="section-h">חמישה מפגשים. מהמפגש הראשון עם הציוד ועד סט ראשון מוקלט.</h2>
+      </div>
+      <p class="section-lead">
+        משך כל מפגש הוא בין שעה לשעתיים, אחד‑על‑אחד עם המורה (או בזוגות). אנחנו מתקדמים לפי הקצב והצורך של התלמיד או התלמידה.
+      </p>
+    </div>
+
+    <div class="sessions">
+      <article class="session">
+        <div class="session-num">01</div>
+        <h3>היכרות עם הציוד</h3>
+        <p>מה זה ג'וג, מה זה מיקסר, איך טוענים טראק. ידיים על הציוד מהשיעור הראשון.</p>
+      </article>
+      <article class="session">
+        <div class="session-num">02</div>
+        <h3>קצב, BPM וביט‑מאצ'ינג</h3>
+        <p>איך שני קטעים מוזיקליים יכולים להתנגן באותו קצב. מזהים סוגי אנרגיה, ספירת קצב ולמה זה חשוב.</p>
+      </article>
+      <article class="session">
+        <div class="session-num">03</div>
+        <h3>מעבר בין טראקים</h3>
+        <p>האקוולייזר, הפיידר, ה‑cue. הרגע שבו שני שירים הופכים לאחד.</p>
+      </article>
+      <article class="session">
+        <div class="session-num">04</div>
+        <h3>בחירת רפרטואר</h3>
+        <p>בונים פלייליסט אישי — מה רוצים להשמיע, איזה סיפור הסט הזה מספר.</p>
+      </article>
+      <article class="session">
+        <div class="session-num">05</div>
+        <h3>הקלטת הסט הראשון</h3>
+        <p>סט מוקלט וערוך שאפשר להשמיע, להתגאות בו ולשתף אותו עם העולם.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== OUTCOMES ============== -->
+<section class="outcomes" data-screen-label="04 Outcomes">
+  <div class="wrap">
+    <div class="outcomes-head">
+      <div class="section-eyebrow">
+        <span class="num">03</span>
+        <span>מה לוקחים בסוף</span>
+        <span class="line"></span>
+      </div>
+      <h2 class="section-h">שלוש מיומניות מעשיות שיוצאים
+איתן מהקורס.</h2>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome">
+        <div class="outcome-tag">
+</div>
+        <svg class="outcome-vis" viewBox="0 0 64 64" aria-hidden="true">
+          <circle class="ico" cx="32" cy="32" r="22"></circle>
+          <circle class="ico" cx="32" cy="32" r="6"></circle>
+          <line class="ico" x1="32" y1="10" x2="32" y2="18"></line>
+          <line class="ico" x1="32" y1="46" x2="32" y2="54"></line>
+          <line class="ico" x1="10" y1="32" x2="18" y2="32"></line>
+          <line class="ico" x1="46" y1="32" x2="54" y2="32"></line>
+        </svg>
+        <div>
+          <h3>הכרה של הציוד</h3>
+          <p>שולטים בלוח הבקרה- הכפתורים כבר לא זרים ומפחידים.</p>
+        </div>
+      </div>
+
+      <div class="outcome">
+        <div class="outcome-tag">
+</div>
+        <svg class="outcome-vis" viewBox="0 0 64 64" aria-hidden="true">
+          <path class="ico" d="M6 32 Q14 18, 22 32 T 38 32 T 54 32"></path>
+          <path class="ico" d="M10 40 Q18 26, 26 40 T 42 40 T 58 40" style="opacity:.55"></path>
+        </svg>
+        <div>
+          <h3>מיקס בין שני טראקים</h3>
+          <p>היכולת לחבר בין שני קטעים וליצור משהו שלישי שנשמע טבעי. </p>
+        </div>
+      </div>
+
+      <div class="outcome">
+        <div class="outcome-tag">
+</div>
+        <svg class="outcome-vis" viewBox="0 0 64 64" aria-hidden="true" style="opacity:0.89">
+          <rect class="ico" x="8" y="20" width="48" height="24"></rect>
+          <line class="ico" x1="16" y1="32" x2="22" y2="32"></line>
+          <line class="ico" x1="26" y1="28" x2="26" y2="36"></line>
+          <line class="ico" x1="30" y1="26" x2="30" y2="38"></line>
+          <line class="ico" x1="34" y1="29" x2="34" y2="35"></line>
+          <line class="ico" x1="38" y1="24" x2="38" y2="40"></line>
+          <line class="ico" x1="42" y1="30" x2="48" y2="30"></line>
+        </svg>
+        <div>
+          <h3>הסט הראשון, מוקלט</h3>
+          <p>קובץ אודיו שלם של סט עצמאי- 
+מה ששולחים לסבתא, לחברים, או פשוט נהנים בבית.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== INSTRUCTOR ============== -->
+<section class="instructor" id="instructor" data-screen-label="05 Instructor">
+  <div class="wrap">
+    <div class="instructor-grid">
+      <div class="instructor-photo">
+        <img src="assets/adi-portrait.jpeg" alt="עדי אורה הירש, דיג'יית ומורה ראשית בסטודיו Meteora">
+        <div class="instructor-tag">ADI ORA HIRSH · FOUNDER</div>
+      </div>
+      <div class="instructor-content">
+        <div class="section-eyebrow">
+          <span class="num">04</span>
+          <span>המורה</span>
+          <span class="line"></span>
+        </div>
+        <h2>
+          <small>ADI ORA HIRSH</small>
+          עדי אורה הירש.<br>
+          דיג'יית פעילה. <br>מורה.
+        </h2>
+        <div class="instructor-bio">
+          <p>
+            דיג'יית מקצועית ופעילה, מתקלטת במועדונים המובילים בתל אביב ובעולם. הייתה רדיזנטית של מועדון הבלוק שהוכתר כאחד המועדונים הטובים בעולם. את הניסיון על הבמה היא מביאה איתה לסטודיו ללא הרעש של הקלאב וברגישות שמאפיינת אותה מתאימה לבקצב שמתאים לילד או לילדה שמגיעים בפעם הראשונה.
+          </p>
+          <p>
+            הגישה שלה לתיקלוט מתחילה מהאוזן השנייה: מה שומע מי שמאזין? איך נשמעת הבחירה הזו בסלון, באוזניות, או על רחבת ריקודים? מההחלטה הקטנה הזו צומחת היכולת לבנות חוויה — ולא רק להפעיל מוזיקה.
+          </p>
+        </div>
+        <div class="instructor-quote">"תיקלוט זה לא להשמיע מה שאני אוהבת. זה להקשיב למה שמישהו אחר צריך לשמוע ברגע הזה ועדיין להישאר לחלוטין נאמנה לעצמי"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PRICING ============== -->
+<section class="pricing" id="pricing" data-screen-label="06 Pricing">
+  <div class="wrap">
+    <div class="pricing-head">
+      <div class="section-eyebrow">
+        <span class="num">05</span>
+        <span>מחירים</span>
+        <span class="line"></span>
+      </div>
+      <h2 class="section-h">קורס יסודות, חמישה מפגשים.</h2>
+    </div>
+
+    <div class="price-grid">
+      <!-- Trial -->
+      <div class="price-card">
+        <div class="price-tag">// שיעור ניסיון</div>
+        <div class="price-name">פגישה ראשונה</div>
+        <div class="price-sub">לבדוק אם זה מתאים ללא התחייבות לקורס מלא.</div>
+        <div class="price-amount">
+          <span class="num">מופחת</span>
+        </div>
+        <div class="price-meta">בתשלום מופחת · ~90 דקות</div>
+        <ul class="price-list">
+          <li>היכרות עם הציוד</li>
+          <li>שיחת חיבור לחזון, למה התלמיד/ה רוצה לתקלט</li>
+          <li>נגיעה ראשונה במיקסר</li>
+        </ul>
+        <a href="#contact" class="price-cta">
+          קבעו שיעור ניסיון
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Solo -->
+      <div class="price-card">
+        <div class="price-tag">// 1:1</div>
+        <div class="price-name">קורס יחיד</div>
+        <div class="price-sub">5 מפגשים פרטיים, אחד‑על‑אחד עם עדי.</div>
+        <div class="price-amount">
+          <span class="num">2,000</span>
+          <span class="currency">₪</span>
+        </div>
+        <div class="price-meta">סה"כ לקורס · 5 × 1h-2h</div>
+        <ul class="price-list">
+          <li>קצב מותאם אישית</li>
+          <li>בחירת רפרטואר אישי</li>
+          <li>הקלטת סט מסכם</li>
+        </ul>
+        <a href="#contact" class="price-cta">
+          להרשמה
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Duo (featured) -->
+      <div class="price-card featured">
+        <div class="price-tag">// בזוגות</div>
+        <div class="price-name">קורס בזוגות</div>
+        <div class="price-sub">5 מפגשים, שני תלמידים יחד. חבר/ה, אח/ות.</div>
+        <div class="price-amount">
+          <span class="num">1,650</span>
+          <span class="currency">₪</span>
+        </div>
+        <div class="price-meta">לכל תלמיד · 5 × 1.5h-2h</div>
+        <ul class="price-list">
+          <li>למידה משותפת + מעבר ידע בין התלמידים</li>
+          <li>חוויה חברתית, סט לכל אחד</li>
+          <li>חיסכון של ‎‎350₪ לכל אחד</li>
+        </ul>
+        <a href="#contact" class="price-cta">
+          להרשמה כזוג
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TRIAL STRIP ============== -->
+<section class="trial" data-screen-label="07 Trial CTA">
+  <div class="wrap trial-inner">
+    <div class="trial-tag">Try Before</div>
+    <div class="trial-content">
+      <h3>לא בטוחים שזה הקטע שלהם?<br>שיעור ניסיון בתשלום מופחת.</h3>
+      <p>פגישה אחת בסטודיו והיכרות עם הציוד ועם המורה. 
+אם ממשיכים לקורס- התשלום מחושב כחלק מהעלות הכוללת. </p>
+    </div>
+    <a class="btn btn-primary" href="#contact">
+      קבעו שיעור ניסיון
+      <span class="arrow" aria-hidden="true"></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============== TESTIMONIALS ============== -->
+<section class="testimonials" data-screen-label="08 Testimonials">
+  <div class="wrap">
+    <div class="section-eyebrow" style="margin-bottom:48px;">
+      <span class="num">06</span>
+      <span>הורים ותלמידים מספרים</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="test-grid">
+      <article class="test">
+        <div class="test-mark">"</div>
+        <p class="test-body">
+          הבן שלי בן 11 חזר אחרי המפגש הראשון ולא הפסיק לדבר על מה שעשו. פתאום הוא יושב בבית ובוחר שירים בקפידה. זה משהו שלא ראינו לפני.
+        </p>
+        <div class="test-meta">
+          <strong>מאיה ל׳</strong>
+          הורה לתלמיד · בנימינה
+        </div>
+      </article>
+      <article class="test">
+        <div class="test-mark">"</div>
+        <p class="test-body">
+          עדי לא רק מלמדת איך לתקלט. היא מלמדת להקשיב. הילדה שלי לוקחת את זה גם לכיתה, גם לחברי, השראה.
+        </p>
+        <div class="test-meta">
+          <strong>תומר ש׳</strong>
+          הורה לתלמידה · זכרון יעקב
+        </div>
+      </article>
+      <article class="test">
+        <div class="test-mark">"</div>
+        <p class="test-body">
+          עשיתי את הקורס עם החברה הכי טובה שלי. הקלטנו סט יחד בסוף. שמתי אותו ביומולדת שלי.
+        </p>
+        <div class="test-meta">
+          <strong>נועה, בת 13</strong>
+          תלמידה · קורס יסודות
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ARTIST ============== -->
+<section class="artist" id="artist" data-screen-label="06 Artist">
+  <div class="wrap" style="font-family: &quot;Space Grotesk&quot;">
+    <div class="artist-grid">
+      <div class="artist-video">
+        <video id="artistVideo" src="assets/adi-set.mp4" muted loop playsinline autoplay preload="metadata" poster="assets/adi-perform.jpg"></video>
+        <div class="artist-video-tag">LIVE · TEL AVIV</div>
+        <button type="button" class="artist-video-mute" id="artistMuteBtn" aria-label="הפעל סאונד">
+          <svg class="ic-muted" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/>
+            <path d="M16 8l6 8M22 8l-6 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+          <svg class="ic-on" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/>
+            <path d="M16 8c1.5 1 2.5 2.4 2.5 4s-1 3-2.5 4M19 5c2.5 1.6 4 4.1 4 7s-1.5 5.4-4 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </button>
+      </div>
+      <div class="artist-content">
+        <div class="section-eyebrow">
+          <span class="num">06</span>
+          <span>האמנית</span>
+          <span class="line"></span>
+        </div>
+        <h2 style="font-family: Heebo">
+          <small>STAGE NAME · ONE AGENT</small>
+          לא רק <span class="neon">מורה</span>.<br>
+          אמנית פעילה.
+        </h2>
+        <div class="artist-bio">
+          <p>תחת שם הבמה <strong style="color:var(--paper)">ONE AGENT</strong>, עדי מתקלטת באירועים ובמועדונים — סטים שנעים בין האנדרגראונד של תל אביב לסצנות בחו״ל.</p>
+          <p>הניסיון הזה הוא הסיבה שהשיעורים שלה אמיתיים: לא תיאוריה, אלא ידע שעובד על הרחבה.</p>
+        </div>
+        <a href="https://soundcloud.com/adi-hirsh" target="_blank" rel="noopener" class="artist-link">
+          <svg class="sc-icon" viewBox="0 0 24 14" aria-hidden="true">
+            <path d="M0 9.5c0-.3.2-.5.4-.5.3 0 .5.2.5.5v3c0 .3-.2.5-.5.5-.2 0-.4-.2-.4-.5v-3zm1.6-1.5c0-.3.2-.5.5-.5.2 0 .4.2.4.5v4.5c0 .3-.2.5-.4.5-.3 0-.5-.2-.5-.5V8zm1.7-1c0-.3.2-.5.5-.5s.4.2.4.5v5.5c0 .3-.1.5-.4.5s-.5-.2-.5-.5V7zm1.7-.5c0-.3.2-.5.5-.5s.4.2.4.5v6c0 .3-.1.5-.4.5s-.5-.2-.5-.5v-6zm1.7 0c0-.3.2-.5.5-.5s.4.2.4.5v6c0 .3-.1.5-.4.5s-.5-.2-.5-.5v-6zm1.7-1c0-.3.2-.5.4-.5.3 0 .5.2.5.5v7c0 .3-.2.5-.5.5-.2 0-.4-.2-.4-.5v-7zm1.7-2c0-.3.2-.5.4-.5.3 0 .5.2.5.5v9c0 .3-.2.5-.5.5-.2 0-.4-.2-.4-.5v-9zm1.7-1c0-.3.2-.5.4-.5.3 0 .5.2.5.5v10c0 .3-.2.5-.5.5-.2 0-.4-.2-.4-.5v-10zm1.7.5c0-.3.2-.5.4-.5.3 0 .5.2.5.5v9.5c0 .3-.2.5-.5.5-.2 0-.4-.2-.4-.5v-9.5zM19.5 4c2.5 0 4.5 2 4.5 4.5s-2 4.5-4.5 4.5h-2.6c-.3 0-.5-.2-.5-.5v-8c0-.3.2-.4.5-.5.7-.3 1.7-.5 2.6 0z"/>
+          </svg>
+          <span>
+            <strong>ONE AGENT</strong>
+            <br>SOUNDCLOUD
+          </span>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section class="faq" id="faq" data-screen-label="08 FAQ">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-head">
+        <div class="section-eyebrow">
+          <span class="eyebrow-line"></span>
+          <span>08 / FAQ</span>
+        </div>
+        <h2>שאלות <span class="neon">נפוצות</span></h2>
+        <p>
+          אספתי כאן את השאלות שהורים שואלים אותי הכי הרבה לפני ההרשמה. אם משהו עדיין לא ברור — וואטסאפ אליי וננסה לפתור יחד.
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary class="faq-q">
+            <span class="num">01</span>
+            <span class="faq-q-text">צריך ידע מוזיקלי או ניסיון מוקדם?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            <p>לא. הקורס בנוי לילדים שמגיעים בלי שום רקע. כל מה שצריך זה אוזניים שמקשיבות וסקרנות לגלות מוזיקה. אני מתאימה את הקצב לכל ילד וילדה — מי שכבר מתעסק במוזיקה יקבל אתגרים מתקדמים יותר, ומי שמתחיל מאפס יבנה את הביטחון בהדרגה.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            <span class="num">02</span>
+            <span class="faq-q-text">מה הילד או הילדה צריכים להביא?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            <p>רק את עצמם. כל הציוד נמצא בסטודיו — קונסולה, אוזניות, מחשב, רמקולים. אם יש מוזיקה אהובה במיוחד, אפשר להביא רשימה או פלייליסט מספוטיפיי וניקח משם השראה לסט הראשון.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            <span class="num">03</span>
+            <span class="faq-q-text">איפה הסטודיו ואיך מגיעים?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            <p>הסטודיו נמצא בבנימינה, באזור שקט וקל לגישה. אחרי תיאום השיעור הראשון אשלח כתובת מדויקת והוראות חניה. ההורים מוזמנים להישאר במהלך השיעור או לחזור בסוף.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            <span class="num">04</span>
+            <span class="faq-q-text">מה קורה אחרי הקורס?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            <p>בסוף 5 המפגשים יוצאים עם סט מוקלט שלכם, היכרות עם הציוד, וטעם אישי שהתחלתם לעצב. מי שרוצה להמשיך — אפשר להירשם למסלול המשך עם דגש על הופעות חיות, מיקסים ארוכים יותר, או יציאה לאירועים אמיתיים בסביבה מוגנת.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            <span class="num">05</span>
+            <span class="faq-q-text">למה זוגות ולא קבוצה גדולה?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            <p>תיקלוט הוא תהליך אישי מאוד — כל ילד מגלה טעם אחר, קצב אחר, ואופן שמיעה אחר. בזוגות אני יכולה להישאר קרובה לכל אחד, ובו זמנית לתת חוויה של נגינה משותפת. שיעור 1:1 מתאים למי שרוצה ריכוז מלא וקצב מותאם אישית.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            <span class="num">06</span>
+            <span class="faq-q-text">מה אם הילד או הילדה מתביישים?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            <p>זה אחד הדברים שאני אוהבת הכי הרבה בעבודה הזאת. ילדים שמגיעים שקטים בשיעור הראשון, כבר במפגש השני בוחרים מוזיקה בעצמם, ובשלישי מתקלטים בלי למצמץ. הסטודיו הוא מרחב סגור ובלי שיפוטיות — לא מופיעים בפני אף אחד, פשוט חוקרים יחד.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            <span class="num">07</span>
+            <span class="faq-q-text">איך מתחילים?</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            <p>הצעד הראשון הוא <strong style="color:var(--paper)">שיעור ניסיון בעלות מופחתת</strong> — לראות אם זה מתאים, אם הכימיה עובדת, ואם הילד או הילדה מתחברים לקצב. שלחו וואטסאפ עם השם והגיל ואני חוזרת תוך 24 שעות לתיאום.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section class="contact" id="contact" data-screen-label="09 Contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="section-eyebrow">
+          <span class="num">07</span>
+          <span>צור קשר</span>
+          <span class="line"></span>
+        </div>
+        <h2>בואו <span class="neon">נדבר.</span></h2>
+        <p class="contact-lead">
+          שלחו וואטסאפ עם שם וגיל הילד או הילדה, או חייגו ישירות. אני חוזרת לכל פנייה תוך 24 שעות.
+        </p>
+        <a class="btn btn-primary" href="https://wa.me/972528977705" target="_blank" rel="noopener">
+          הודעה בוואטסאפ
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="contact-list">
+        <a href="tel:+972528977705">
+          <span><span class="label">טלפון&nbsp;&nbsp;</span>052-8977705</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+        <a href="mailto:adi@oneagent.co.il">
+          <span><span class="label">אימייל&nbsp;&nbsp;</span>adi@oneagent.co.il</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+        <a href="https://www.instagram.com/_one_agent/" target="_blank" rel="noopener">
+          <span><span class="label">אינסטגרם&nbsp;&nbsp;</span>@_one_agent</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+        <a>
+          <span><span class="label">סטודיו&nbsp;&nbsp;</span>בנימינה</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Meteora <small>DJ Studio · Binyamina</small>
+    </div>
+    <div>© 2026 · כל הזכויות שמורות לעדי אורה הירש</div>
+  </div>
+</footer>
+
+<!-- ============== TWEAKS ============== -->
+<div id="tweaks-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx" data-presets="react" data-plugins="transform-react-jsx-source,om-src-id,om-text-extract" data-filename="tweaks-panel.jsx"></script>
+<script type="text/babel" data-presets="react" data-plugins="transform-react-jsx-source,om-src-id,om-text-extract" data-filename="inline-1">
+/* Tweaks app for Meteora landing page */
+const { useEffect } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "neonHue": 360,
+  "showTicker": true,
+  "showTestimonials": true
+}/*EDITMODE-END*/;
+
+function applyMeteoraTweaks(t) {
+  const root = document.documentElement;
+  root.style.setProperty('--neon', `oklch(0.72 0.28 ${t.neonHue})`);
+  root.style.setProperty('--neon-soft', `oklch(0.72 0.28 ${t.neonHue} / 0.18)`);
+  const ticker = document.querySelector('.ticker');
+  if (ticker) ticker.style.display = t.showTicker ? '' : 'none';
+  const testimonials = document.querySelector('.testimonials');
+  if (testimonials) testimonials.style.display = t.showTestimonials ? '' : 'none';
+}
+
+function MeteoraTweaks() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  useEffect(() => { applyMeteoraTweaks(tweaks); }, [tweaks]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Neon accent">
+        <TweakSlider
+          label="גוון נאון"
+          value={tweaks.neonHue}
+          min={0} max={360} step={1}
+          onChange={(v) => setTweak('neonHue', v)}
+        />
+        <div style={{
+          height: 22, marginTop: 6, marginBottom: 4,
+          background: `linear-gradient(90deg,
+            oklch(0.72 0.28 0), oklch(0.72 0.28 60), oklch(0.72 0.28 120),
+            oklch(0.72 0.28 180), oklch(0.72 0.28 240), oklch(0.72 0.28 300), oklch(0.72 0.28 360))`,
+          borderRadius: 3, position: 'relative',
+          border: '0.5px solid rgba(0,0,0,0.1)'
+        }}>
+          <div style={{
+            position: 'absolute',
+            left: `${(tweaks.neonHue / 360) * 100}%`,
+            top: -3, bottom: -3, width: 2, background: '#fff',
+            boxShadow: '0 0 0 1px rgba(0,0,0,0.4)',
+            transform: 'translateX(-1px)'
+          }}/>
+        </div>
+      </TweakSection>
+
+      <TweakSection label="Sections">
+        <TweakToggle
+          label="טיקר נע"
+          value={tweaks.showTicker}
+          onChange={(v) => setTweak('showTicker', v)}
+        />
+        <TweakToggle
+          label="המלצות"
+          value={tweaks.showTestimonials}
+          onChange={(v) => setTweak('showTestimonials', v)}
+        />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<MeteoraTweaks />);
+</script>
+
+
+
+<script>
+(function(){
+  const v = document.getElementById('artistVideo');
+  const b = document.getElementById('artistMuteBtn');
+  if(!v||!b) return;
+  b.setAttribute('data-muted','true');
+  b.addEventListener('click', () => {
+    v.muted = !v.muted;
+    b.setAttribute('data-muted', v.muted ? 'true' : 'false');
+    b.setAttribute('aria-label', v.muted ? 'הפעל סאונד' : 'השתק');
+    if(!v.muted){ v.play().catch(()=>{}); }
+  });
+})();
+</script>
+
+</body></html>
